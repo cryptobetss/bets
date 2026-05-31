@@ -49,6 +49,35 @@
       font-family: var(--mono); font-size: 12px; color: var(--yellow);
     }
 
+    /* $BET points pill */
+    .bet-points-pill {
+      display: flex; align-items: center; gap: 7px; padding: 6px 12px;
+      border-radius: 6px; background: var(--bg3);
+      border: 1px solid rgba(179,157,219,0.2);
+      font-family: var(--mono); font-size: 12px; color: #b39ddb;
+      cursor: pointer; transition: border-color 0.15s;
+    }
+    .bet-points-pill:hover { border-color: #b39ddb; }
+    .bet-icon {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: linear-gradient(135deg, #b39ddb, #7c4dff);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .airdrop-badge {
+      font-size: 9px; background: rgba(179,157,219,0.12);
+      border: 1px solid rgba(179,157,219,0.25); border-radius: 3px;
+      padding: 1px 5px; color: #b39ddb; letter-spacing: 0.3px;
+    }
+    /* Points modal extras */
+    .points-breakdown { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .points-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+    .points-row span:first-child { color: var(--text2); }
+    .points-row span:last-child { font-family: var(--mono); font-weight: 600; }
+    .points-bar-wrap { background: var(--bg3); border-radius: 6px; overflow: hidden; height: 5px; margin: 6px 0 2px; }
+    .points-bar { height: 100%; background: linear-gradient(90deg, #7c4dff, #b39ddb); border-radius: 6px; transition: width 0.5s ease; }
+    .supply-note { font-size: 11px; color: var(--text3); font-family: var(--mono); text-align: center; margin-top: 4px; line-height: 1.6; }
+
     /* Withdraw button in header */
     .withdraw-btn-header {
       display: none; align-items: center; gap: 6px; padding: 6px 14px;
@@ -89,78 +118,83 @@
     .coin-change { font-family: var(--mono); font-size: 11px; }
     .pos { color: var(--green); } .neg { color: var(--red); }
 
-    .content { display: flex; flex-direction: column; overflow: hidden; }
+    .content { display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
+
+    /* Coin header — more compact */
     .coin-header {
-      padding: 16px 24px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 20px; background: var(--bg);
+      padding: 10px 20px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 16px; background: var(--bg);
+      flex-shrink: 0;
     }
-    .coin-header-img { width: 40px; height: 40px; border-radius: 50%; }
-    .coin-header-info h2 { font-size: 20px; font-weight: 600; }
-    .coin-header-info .ticker { font-family: var(--mono); font-size: 12px; color: var(--text3); }
-    .price-big { font-family: var(--mono); font-size: 28px; font-weight: 700; }
-    .price-change-big { font-family: var(--mono); font-size: 14px; }
+    .coin-header-img { width: 32px; height: 32px; border-radius: 50%; }
+    .coin-header-info h2 { font-size: 16px; font-weight: 600; }
+    .coin-header-info .ticker { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+    .price-big { font-family: var(--mono); font-size: 22px; font-weight: 700; }
+    .price-change-big { font-family: var(--mono); font-size: 12px; }
 
-    .chart-container { flex: 1; position: relative; border-bottom: 1px solid var(--border); min-height: 0; }
-    #tv-widget { width: 100%; height: 100%; }
-    .chart-placeholder {
-      position: absolute; inset: 0; display: flex; align-items: center;
-      justify-content: center; flex-direction: column; gap: 12px; color: var(--text3);
+    /* Bet panel — now on top, compact single row */
+    .bet-panel {
+      background: var(--bg2); padding: 12px 20px;
+      border-bottom: 1px solid var(--border); flex-shrink: 0;
+      border-top: none;
     }
-    .chart-placeholder svg { opacity: 0.3; }
-
-    .bet-panel { background: var(--bg); padding: 20px 24px; border-top: 1px solid var(--border); }
-    .bet-panel h3 { font-size: 13px; color: var(--text2); margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase; font-family: var(--mono); }
-    .bet-form { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .amount-group { display: flex; align-items: center; gap: 8px; }
-    .amount-label { font-size: 12px; color: var(--text2); }
+    .bet-panel-top {
+      display: flex; align-items: center; gap: 10px; flex-wrap: nowrap;
+    }
+    .bet-label { font-size: 11px; color: var(--text3); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
     .amount-input {
-      background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px;
-      padding: 8px 12px; font-family: var(--mono); font-size: 14px; color: var(--text);
-      width: 140px; outline: none; transition: border-color 0.15s;
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: 6px;
+      padding: 7px 10px; font-family: var(--mono); font-size: 13px; color: var(--text);
+      width: 100px; outline: none; transition: border-color 0.15s;
     }
     .amount-input:focus { border-color: var(--accent); }
-    .preset-btns { display: flex; gap: 4px; }
+    .preset-btns { display: flex; gap: 3px; }
     .preset-btn {
-      padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border2);
-      background: var(--bg2); font-family: var(--mono); font-size: 11px; color: var(--text2);
-      cursor: pointer; transition: all 0.15s;
+      padding: 5px 8px; border-radius: 4px; border: 1px solid var(--border2);
+      background: var(--bg3); font-family: var(--mono); font-size: 10px; color: var(--text2);
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
     }
     .preset-btn:hover { border-color: var(--accent); color: var(--green); }
-    .bet-buttons { display: flex; gap: 10px; margin-left: auto; }
+    .bet-buttons { display: flex; gap: 8px; margin-left: auto; flex-shrink: 0; }
     .btn-higher {
-      display: flex; align-items: center; gap: 8px; padding: 10px 24px;
-      border-radius: 8px; border: none; cursor: pointer;
-      background: var(--green); color: #000; font-weight: 700; font-size: 15px;
-      font-family: var(--mono); transition: all 0.15s;
+      display: flex; align-items: center; gap: 6px; padding: 8px 20px;
+      border-radius: 7px; border: none; cursor: pointer;
+      background: var(--green); color: #000; font-weight: 700; font-size: 14px;
+      font-family: var(--mono); transition: all 0.15s; white-space: nowrap;
     }
     .btn-higher:hover { background: var(--green2); transform: translateY(-1px); }
     .btn-lower {
-      display: flex; align-items: center; gap: 8px; padding: 10px 24px;
-      border-radius: 8px; border: none; cursor: pointer;
-      background: var(--red); color: #fff; font-weight: 700; font-size: 15px;
-      font-family: var(--mono); transition: all 0.15s;
+      display: flex; align-items: center; gap: 6px; padding: 8px 20px;
+      border-radius: 7px; border: none; cursor: pointer;
+      background: var(--red); color: #fff; font-weight: 700; font-size: 14px;
+      font-family: var(--mono); transition: all 0.15s; white-space: nowrap;
     }
     .btn-lower:hover { background: var(--red2); transform: translateY(-1px); }
     .btn-higher:disabled, .btn-lower:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
+    /* Active bet strip */
     .active-bet {
-      display: none; align-items: center; gap: 16px; padding: 14px 20px;
-      margin-top: 12px; background: var(--bg2); border-radius: 8px; border: 1px solid var(--border2);
+      display: none; align-items: center; gap: 12px;
+      padding: 8px 20px; background: rgba(255,215,64,0.04);
+      border-top: 1px solid rgba(255,215,64,0.12); flex-shrink: 0;
     }
     .active-bet.show { display: flex; }
     .bet-info { flex: 1; }
-    .bet-info strong { font-family: var(--mono); font-size: 13px; }
-    .bet-info small { display: block; font-size: 12px; color: var(--text2); margin-top: 2px; }
-
-    .timer-ring { position: relative; width: 48px; height: 48px; flex-shrink: 0; }
+    .bet-info strong { font-family: var(--mono); font-size: 12px; }
+    .bet-info small { display: block; font-size: 11px; color: var(--text2); margin-top: 1px; }
+    .timer-ring { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
     .timer-ring svg { transform: rotate(-90deg); }
     .timer-ring circle { fill: none; stroke-width: 3; }
     .timer-bg { stroke: var(--border2); }
     .timer-fg { stroke: var(--yellow); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
     .timer-text {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--yellow);
+      font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--yellow);
     }
+
+    /* Chart — fixed height, takes remaining space */
+    .chart-container { flex: 1; position: relative; min-height: 0; overflow: hidden; }
+    #tv-widget { width: 100%; height: 100%; }
 
     /* ===== MODALS ===== */
     .modal-overlay {
@@ -282,6 +316,13 @@
         <span>💰</span>
         <span id="balance-display">$0.00</span>
       </div>
+      <!-- $BET Points pill -->
+      <div class="bet-points-pill" onclick="openPointsModal()" title="Your $BET airdrop points">
+        <div class="bet-icon">B</div>
+        <span id="bet-points-display">0.00</span>
+        <span style="color: var(--text3);">$BET</span>
+        <span class="airdrop-badge">AIRDROP</span>
+      </div>
       <button class="withdraw-btn-header" id="withdraw-header-btn" onclick="openWithdrawModal()">
         ↑ Withdraw
       </button>
@@ -313,35 +354,24 @@
     </aside>
 
     <div class="content">
+      <!-- Coin header — compact -->
       <div class="coin-header" id="coin-header">
         <img class="coin-header-img" id="coin-img" src="" alt="" />
         <div class="coin-header-info">
           <h2 id="coin-name-display">Select a coin</h2>
           <div class="ticker" id="coin-ticker"></div>
         </div>
-        <div>
+        <div style="margin-left:auto;">
           <div class="price-big" id="price-big">—</div>
           <div class="price-change-big" id="price-change-big"></div>
         </div>
       </div>
 
-      <div class="chart-container">
-        <div id="tv-widget"></div>
-        <div class="chart-placeholder" id="chart-placeholder">
-          <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
-            <polyline points="0,35 12,20 24,28 36,10 48,18 64,5" stroke="#4a5a6a" stroke-width="2" fill="none"/>
-          </svg>
-          <span>Select a coin to view chart</span>
-        </div>
-      </div>
-
+      <!-- Bet panel — TOP, single compact row -->
       <div class="bet-panel">
-        <h3>Place your bet · 5 min prediction</h3>
-        <div class="bet-form">
-          <div class="amount-group">
-            <span class="amount-label">Amount ($)</span>
-            <input type="number" class="amount-input" id="bet-amount" value="10" min="1" />
-          </div>
+        <div class="bet-panel-top">
+          <span class="bet-label">5 min bet</span>
+          <input type="number" class="amount-input" id="bet-amount" value="10" min="1" placeholder="$" />
           <div class="preset-btns">
             <button class="preset-btn" onclick="setAmount(5)">$5</button>
             <button class="preset-btn" onclick="setAmount(10)">$10</button>
@@ -355,18 +385,31 @@
             <button class="btn-lower" id="btn-lower" onclick="placeBet('lower')" disabled>▼ LOWER</button>
           </div>
         </div>
-        <div class="active-bet" id="active-bet">
-          <div class="bet-info">
-            <strong id="active-bet-label">—</strong>
-            <small id="active-bet-detail">—</small>
-          </div>
-          <div class="timer-ring">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="timer-bg" cx="24" cy="24" r="20" />
-              <circle class="timer-fg" id="timer-circle" cx="24" cy="24" r="20" stroke-dasharray="125.6" stroke-dashoffset="0" />
-            </svg>
-            <div class="timer-text" id="timer-text">5:00</div>
-          </div>
+      </div>
+
+      <!-- Active bet strip (shown when bet is live) -->
+      <div class="active-bet" id="active-bet">
+        <div class="bet-info">
+          <strong id="active-bet-label">—</strong>
+          <small id="active-bet-detail">—</small>
+        </div>
+        <div class="timer-ring">
+          <svg width="40" height="40" viewBox="0 0 48 48">
+            <circle class="timer-bg" cx="24" cy="24" r="20" />
+            <circle class="timer-fg" id="timer-circle" cx="24" cy="24" r="20" stroke-dasharray="125.6" stroke-dashoffset="0" />
+          </svg>
+          <div class="timer-text" id="timer-text">5:00</div>
+        </div>
+      </div>
+
+      <!-- TradingView chart — fills remaining space -->
+      <div class="chart-container">
+        <div id="tv-widget"></div>
+        <div class="chart-placeholder" id="chart-placeholder">
+          <svg width="64" height="40" viewBox="0 0 64 40" fill="none">
+            <polyline points="0,35 12,20 24,28 36,10 48,18 64,5" stroke="#4a5a6a" stroke-width="2" fill="none"/>
+          </svg>
+          <span>Select a coin to view chart</span>
         </div>
       </div>
     </div>
@@ -468,6 +511,64 @@
   </div>
 </div>
 
+<!-- $BET Points Modal -->
+<div class="modal-overlay" id="points-modal">
+  <div class="modal">
+    <h2 style="display:flex;align-items:center;gap:10px;">
+      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#b39ddb,#7c4dff);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;">B</span>
+      Your $BET Points
+    </h2>
+    <p>Every dollar wagered earns <strong style="color:#b39ddb;">0.01 $BET</strong> regardless of win or loss. Points will be converted to real tokens at the airdrop.</p>
+
+    <div class="points-breakdown">
+      <div class="points-row">
+        <span>Total $BET earned</span>
+        <span style="color:#b39ddb;font-size:18px;" id="pm-total">0.00 $BET</span>
+      </div>
+      <div class="points-row">
+        <span>Total wagered</span>
+        <span id="pm-wagered">$0.00</span>
+      </div>
+      <div class="points-row">
+        <span>Bets placed</span>
+        <span id="pm-bets">0</span>
+      </div>
+      <div class="points-row" style="margin-top:6px;">
+        <span>Your share of supply</span>
+        <span id="pm-share" style="color:#b39ddb;">0.000000%</span>
+      </div>
+      <div class="points-bar-wrap">
+        <div class="points-bar" id="pm-bar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg3);border-radius:8px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">Earning rate</div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;">
+        <span style="color:var(--text2);">Per $1 wagered</span>
+        <span style="font-family:var(--mono);color:#b39ddb;">0.01 $BET</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;">
+        <span style="color:var(--text2);">Per $100 wagered</span>
+        <span style="font-family:var(--mono);color:#b39ddb;">1.00 $BET</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;">
+        <span style="color:var(--text2);">Per $1,000 wagered</span>
+        <span style="font-family:var(--mono);color:#b39ddb;">10.00 $BET</span>
+      </div>
+    </div>
+
+    <div class="supply-note">
+      Total supply: 500,000,000 $BET · Airdrop allocation TBD<br/>
+      Points snapshot taken at airdrop date — keep betting to earn more!
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="closeModal('points-modal')" style="background:#7c4dff;color:#fff;">Got it</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script src="https://s3.tradingview.com/tv.js"></script>
@@ -477,12 +578,17 @@ const CUSTODY = {
   usdc: 'YOUR_SOLANA_WALLET_ADDRESS_FOR_USDC',
   sol:  'YOUR_SOLANA_WALLET_ADDRESS_FOR_SOL',
 };
-const BONUS_AMOUNT = 100;
-const CG_BASE = 'https://api.coingecko.com/api/v3';
+const BONUS_AMOUNT   = 100;
+const BET_RATE       = 0.01;   // $BET per $1 wagered
+const BET_SUPPLY     = 500_000_000;
+const CG_BASE        = 'https://api.coingecko.com/api/v3';
 
 /* ===== STATE ===== */
 const STATE = {
   wallet: null, balance: 0, bonus: BONUS_AMOUNT,
+  betPoints: 0,       // $BET points accumulated
+  totalWagered: 0,    // lifetime $ wagered
+  betsPlaced: 0,      // lifetime bet count
   coins: [], filteredCoins: [], selectedCoin: null,
   activeBet: null, betTimer: null, tvWidget: null,
 };
@@ -499,8 +605,11 @@ function saveUser() {
   const existing = loadUser() || {};
   localStorage.setItem(getUserKey(), JSON.stringify({
     ...existing,
-    balance: STATE.balance,
-    bonus: STATE.bonus,
+    balance:      STATE.balance,
+    bonus:        STATE.bonus,
+    betPoints:    STATE.betPoints,
+    totalWagered: STATE.totalWagered,
+    betsPlaced:   STATE.betsPlaced,
   }));
 }
 
@@ -524,24 +633,33 @@ function getPendingRequest() {
 
 /* ===== UI UPDATE ===== */
 function updateWalletUI() {
-  const chip = document.getElementById('wallet-chip');
+  const chip  = document.getElementById('wallet-chip');
   const label = document.getElementById('wallet-label');
   const balEl = document.getElementById('balance-display');
-  const wBtn = document.getElementById('withdraw-header-btn');
+  const wBtn  = document.getElementById('withdraw-header-btn');
+  const bpEl  = document.getElementById('bet-points-display');
 
   if (STATE.wallet) {
     chip.classList.remove('disconnected');
     label.textContent = STATE.wallet.slice(0,4) + '...' + STATE.wallet.slice(-4);
     balEl.textContent = '$' + STATE.balance.toFixed(2);
+    bpEl.textContent  = formatBET(STATE.betPoints);
     const canWithdraw = getWithdrawableBalance() > 0;
     wBtn.classList.toggle('visible', canWithdraw);
   } else {
     chip.classList.add('disconnected');
     label.textContent = 'Connect Wallet';
     balEl.textContent = '$0.00';
+    bpEl.textContent  = '0.00';
     wBtn.classList.remove('visible');
   }
   updatePendingBanner();
+}
+
+function formatBET(n) {
+  if (n >= 1_000_000) return (n/1_000_000).toFixed(2) + 'M';
+  if (n >= 1_000)     return (n/1_000).toFixed(2) + 'K';
+  return n.toFixed(2);
 }
 
 function updatePendingBanner() {
@@ -558,7 +676,8 @@ function updatePendingBanner() {
 }
 
 function updateBetButtons() {
-  const dis = !STATE.selectedCoin || !STATE.wallet || !!STATE.activeBet;
+  // Buttons are always enabled once a coin is selected — wallet check happens on click
+  const dis = !STATE.selectedCoin || !!STATE.activeBet;
   document.getElementById('btn-higher').disabled = dis;
   document.getElementById('btn-lower').disabled = dis;
 }
@@ -659,11 +778,17 @@ async function connectPhantom() {
     if (!existing) {
       STATE.balance = BONUS_AMOUNT;
       STATE.bonus = BONUS_AMOUNT;
+      STATE.betPoints = 0;
+      STATE.totalWagered = 0;
+      STATE.betsPlaced = 0;
       saveUser();
       toast('🎁 Welcome! $100 bonus credited!', 5000);
     } else {
-      STATE.balance = existing.balance || 0;
-      STATE.bonus = existing.bonus || BONUS_AMOUNT;
+      STATE.balance      = existing.balance      || 0;
+      STATE.bonus        = existing.bonus        || BONUS_AMOUNT;
+      STATE.betPoints    = existing.betPoints    || 0;
+      STATE.totalWagered = existing.totalWagered || 0;
+      STATE.betsPlaced   = existing.betsPlaced   || 0;
     }
     updateWalletUI();
     closeModal('wallet-modal');
@@ -776,16 +901,23 @@ async function placeBet(direction) {
 
   STATE.activeBet = { direction, amount, coin: STATE.selectedCoin, priceAt: STATE.selectedCoin.current_price };
   STATE.balance -= amount;
+
+  // Earn $BET points: 0.01 per $1 wagered, regardless of outcome
+  const earned = amount * BET_RATE;
+  STATE.betPoints    += earned;
+  STATE.totalWagered += amount;
+  STATE.betsPlaced   += 1;
+
   saveUser();
   updateWalletUI();
   updateBetButtons();
 
   const dir = direction === 'higher' ? '▲ HIGHER' : '▼ LOWER';
   document.getElementById('active-bet-label').textContent = `${dir} · $${amount.toFixed(2)} on ${STATE.selectedCoin.symbol.toUpperCase()} · Entry: $${formatPrice(STATE.activeBet.priceAt)}`;
-  document.getElementById('active-bet-detail').textContent = `Resolves in 5 min. Win: +$${amount.toFixed(2)} | Lose: -$${amount.toFixed(2)}`;
+  document.getElementById('active-bet-detail').textContent = `Resolves in 5 min. Win: +$${amount.toFixed(2)} | Lose: -$${amount.toFixed(2)} · +${earned.toFixed(4)} $BET earned`;
   document.getElementById('active-bet').classList.add('show');
   startTimer(5 * 60);
-  toast(`Bet placed! ${dir} @ $${formatPrice(STATE.activeBet.priceAt)}`, 3000);
+  toast(`Bet placed! ${dir} · +${earned.toFixed(4)} $BET earned 🪙`, 3500);
 }
 
 function startTimer(seconds) {
@@ -842,6 +974,19 @@ function showResult(won, bet, currentPrice) {
     detail.textContent = `${bet.coin.symbol.toUpperCase()} moved ${pct > 0?'+':''}${pct}% — $${bet.amount.toFixed(2)} lost.`;
   }
   document.getElementById('result-modal').classList.add('show');
+}
+
+/* ===== $BET POINTS MODAL ===== */
+function openPointsModal() {
+  const share = STATE.betPoints / BET_SUPPLY * 100;
+  const barPct = Math.min(share * 1_000_000, 100); // scale for visibility
+
+  document.getElementById('pm-total').textContent   = STATE.betPoints.toFixed(4) + ' $BET';
+  document.getElementById('pm-wagered').textContent = '$' + STATE.totalWagered.toFixed(2);
+  document.getElementById('pm-bets').textContent    = STATE.betsPlaced;
+  document.getElementById('pm-share').textContent   = share.toFixed(6) + '%';
+  document.getElementById('pm-bar').style.width     = Math.max(barPct, STATE.betPoints > 0 ? 2 : 0) + '%';
+  document.getElementById('points-modal').classList.add('show');
 }
 
 /* ===== UTILS ===== */
