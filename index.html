@@ -192,8 +192,8 @@
       font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--yellow);
     }
 
-    /* Chart — fixed height, takes remaining space */
-    .chart-container { flex: 1; position: relative; min-height: 0; overflow: hidden; }
+    /* Chart — fixed small height */
+    .chart-container { height: 220px; position: relative; min-height: 0; overflow: hidden; flex-shrink: 0; }
     #tv-widget { width: 100%; height: 100%; }
 
     /* ===== MODALS ===== */
@@ -370,7 +370,7 @@
       <!-- Bet panel — TOP, single compact row -->
       <div class="bet-panel">
         <div class="bet-panel-top">
-          <span class="bet-label">5 min bet</span>
+          <span class="bet-label">2 min bet</span>
           <input type="number" class="amount-input" id="bet-amount" value="10" min="1" placeholder="$" />
           <div class="preset-btns">
             <button class="preset-btn" onclick="setAmount(5)">$5</button>
@@ -398,7 +398,7 @@
             <circle class="timer-bg" cx="24" cy="24" r="20" />
             <circle class="timer-fg" id="timer-circle" cx="24" cy="24" r="20" stroke-dasharray="125.6" stroke-dashoffset="0" />
           </svg>
-          <div class="timer-text" id="timer-text">5:00</div>
+          <div class="timer-text" id="timer-text">2:00</div>
         </div>
       </div>
 
@@ -914,9 +914,9 @@ async function placeBet(direction) {
 
   const dir = direction === 'higher' ? '▲ HIGHER' : '▼ LOWER';
   document.getElementById('active-bet-label').textContent = `${dir} · $${amount.toFixed(2)} on ${STATE.selectedCoin.symbol.toUpperCase()} · Entry: $${formatPrice(STATE.activeBet.priceAt)}`;
-  document.getElementById('active-bet-detail').textContent = `Resolves in 5 min. Win: +$${amount.toFixed(2)} | Lose: -$${amount.toFixed(2)} · +${earned.toFixed(4)} $BET earned`;
+  document.getElementById('active-bet-detail').textContent = `Resolves in 2 min. Win: +$${amount.toFixed(2)} | Lose: -$${amount.toFixed(2)} · +${earned.toFixed(4)} $BET earned`;
   document.getElementById('active-bet').classList.add('show');
-  startTimer(5 * 60);
+  startTimer(2 * 60);
   toast(`Bet placed! ${dir} · +${earned.toFixed(4)} $BET earned 🪙`, 3500);
 }
 
